@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AADHAVAN K | Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        (function(){
+            // 🚨 REPLACE THIS WITH YOUR PUBLIC KEY FROM EMAILJS 🚨
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+    </script>
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a24;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b5;
+            --accent-primary: #00ffcc;
+            --accent-secondary: #9933ff;
+            --gradient-main: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            --border-color: rgba(255, 255, 255, 0.05);
+            --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            --glow-primary: 0 0 15px rgba(0, 255, 204, 0.3);
+            --glow-primary-hover: 0 0 25px rgba(0, 255, 204, 0.6);
+            --red: #ff4d4d;
+            --green: #00ffcc;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            --mouse-x: 50vw;
+            --mouse-y: 50vh;
+        }
+
+        /* Optimized Mouse Glow Effect */
+        body::after {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,255,204,0.08), transparent 60%);
+            pointer-events: none;
+            top: var(--mouse-y);
+            left: var(--mouse-x);
+            transform: translate(-50%, -50%);
+            transition: top 0.1s ease-out, left 0.1s ease-out;
+            will-change: transform; 
+            z-index: 9999;
+        }
+
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease;
+        }
+        #loader h2 {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        #loading-percent {
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Background Spinner */
+        .bg-spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0,255,204,0.05), transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            animation: spin 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        h1, h2, h3, h4 { font-weight: 800; line-height: 1.2; }
+        
+        .highlight {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .mono { font-family: 'Fira Code', monospace; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        section { padding: 6rem 0; position: relative; z-index: 1; }
+
+        .section-title {
+            font-size: 2.5rem; margin-bottom: 3rem; text-align: center; position: relative;
+        }
+
+        .section-title::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 4px; background: var(--gradient-main); border-radius: 2px;
+        }
+
+        /* Nav & Mobile Toggle */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1.2rem 0; z-index: 100;
+            background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; color: var(--text-primary); text-decoration: none;}
+        .nav-links { display: flex; gap: 2rem; align-items: center;}
+        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-primary); }
+        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-primary); background: none; border: none; }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .nav-links { 
+                display: none; flex-direction: column; position: absolute; top: 100%; left: 0; 
+                width: 100%; background: var(--bg-secondary); padding: 2rem 0; border-bottom: 1px solid var(--border-color);
+                box-shadow: var(--card-shadow); gap: 1.5rem; text-align: center;
+            }
+            .nav-links.active { display: flex; }
+        }
+
+        /* Buttons with Glowing Effects */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none;
+            transition: var(--transition); cursor: pointer; border: none; font-size: 1rem;
+            position: relative; z-index: 2;
+        }
+
+        .btn-primary { background: var(--gradient-main); color: #000; box-shadow: var(--glow-primary); }
+        .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: var(--glow-primary-hover); }
+
+        .btn-outline {
+            background: transparent; color: var(--text-primary); border: 1px solid var(--border-color);
+            position: relative; overflow: hidden;
+        }
+        .btn-outline:hover { border-color: var(--accent-primary); transform: translateY(-2px) scale(1.02); box-shadow: var(--glow-primary); color: var(--accent-primary);}
+
+        #scrollTopBtn {
+            position: fixed; bottom: 30px; right: 30px; display: none; z-index: 99;
+            width: 50px; height: 50px; border-radius: 50%; font-size: 1.5rem; padding: 0;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Github Section Banner CSS */
+        .github-banner { text-align: center; padding: 5rem 2rem; background: var(--bg-tertiary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+
+        /* 1. Hero Section */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; position: relative; padding-top: 6rem;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 600px; height: 600px; background: radial-gradient(circle, rgba(153, 51, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1; pointer-events: none;
+        }
+        .hero-subtitle { font-size: 1.2rem; color: var(--accent-primary); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        .hero-title { font-size: 4.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: -1px;}
+        
+        /* Typing Animation Setup */
+        .typing-text { font-size: 1.5rem; color: var(--text-secondary); margin-bottom: 1.5rem; height: 2rem;}
+        .cursor { display: inline-block; width: 3px; height: 1.2em; background-color: var(--accent-primary); animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 5px;}
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .hero-impact { font-size: 1.1rem; color: var(--text-primary); max-width: 650px; margin: 0 auto 2.5rem auto; border-left: 3px solid var(--accent-secondary); padding-left: 1rem; text-align: left; font-style: italic;}
+
+        /* Impact Stats */
+        .stats-row { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;}
+        .stat-item { text-align: center; }
+        .stat-item h3 { font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 0.5rem;}
+        .stat-item p { font-size: 0.9rem; color: var(--text-secondary); font-family: 'Fira Code', monospace; text-transform: uppercase; letter-spacing: 1px;}
+
+        /* Structured Skills Section */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .skill-category { background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; text-align: left; }
+        .skill-category h3 { color: var(--accent-primary); margin-bottom: 1.5rem; font-size: 1.2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;}
+        .skill-list { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .skill-badge { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; font-size: 0.95rem; color: var(--text-primary); }
+
+        /* 3. Projects Section */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2.5rem; }
+        .project-card {
+            background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px;
+            overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; height: 100%;
+        }
+        .project-card:hover { transform: translateY(-10px); border-color: rgba(0, 255, 204, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); }
+        
+        .project-media-wrapper { background: var(--bg-tertiary); position: relative; overflow: hidden; border-bottom: 1px solid var(--border-color); height: 240px; display: flex; align-items: center; justify-content: center;}
+        .project-media-wrapper img, .project-media-wrapper video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block;}
+        .project-card:hover .project-media-wrapper img { transform: scale(1.02); }
+
+        .project-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .project-title { font-size: 1.6rem; margin-bottom: 1.5rem; color: var(--text-primary); }
+        
+        /* Engineering Problem/Solution/Result/Future Framework */
+        .psr-framework { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; flex-grow: 1;}
+        .psr-item { background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--border-color); transition: border-color 0.3s;}
+        .psr-item:hover { border-left-color: var(--accent-primary); background: rgba(255,255,255,0.04);}
+        .psr-item h4 { font-size: 0.85rem; color: var(--accent-primary); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px;}
+        .psr-item p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0; line-height: 1.5;}
+
+        .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .tech-tag { font-size: 0.75rem; padding: 0.3rem 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); border-radius: 20px; color: var(--text-primary); font-family: 'Fira Code', monospace; }
+        .project-links { display: flex; gap: 1rem; margin-top: auto; }
+        .project-links .btn { flex: 1; font-size: 0.9rem; }
+
+        /* 4. About & Timeline Section */
+        .about-container { max-width: 900px; margin: 0 auto; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-content p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8; }
+        
+        /* Learning Timeline */
+        .timeline { list-style: none; border-left: 2px solid var(--border-color); padding-left: 1.5rem; margin-top: 2rem;}
+        .timeline li { position: relative; margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.05rem;}
+        .timeline li::before {
+            content: ''; position: absolute; left: -1.85rem; top: 6px; width: 12px; height: 12px;
+            background: var(--bg-primary); border: 2px solid var(--accent-primary); border-radius: 50%; box-shadow: var(--glow-primary);
+        }
+        .timeline-date { font-weight: 800; color: var(--text-primary); margin-right: 0.5rem; font-family: 'Fira Code', monospace; font-size: 0.9rem;}
+
+        /* CTA Section */
+        .cta-section { text-align: center; padding: 5rem 2rem; background: linear-gradient(to bottom, transparent, rgba(0, 255, 204, 0.03)); border-radius: 24px; border: 1px solid var(--border-color); margin-top: 2rem;}
+        .cta-section h2 { font-size: 2.2rem; margin-bottom: 1rem;}
+        .cta-section p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;}
+
+        /* 6. Contact Section */
+        .contact { background: var(--bg-secondary); border-top: 1px solid var(--border-color); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; }
+        .contact-info-value { font-size: 1.2rem; font-weight: 600; color: var(--accent-primary); text-decoration: none; }
+        
+        .form-control {
+            width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 1rem 1.5rem; color: var(--text-primary); font-family: inherit; font-size: 1rem; margin-bottom: 1rem;
+        }
+        .form-control:focus { outline: none; border-color: var(--accent-primary); background: rgba(255, 255, 255, 0.02); }
+        
+        #formStatus { font-size: 0.95rem; margin-bottom: 1rem; font-weight: 600; min-height: 24px;}
+        /* ════ FIX FOR SELECT DROPDOWN VISIBILITY ════ */
+        /* 1. Make the placeholder text dimmer so it looks like a placeholder */
+        select.form-control:invalid {
+        color: var(--text-secondary);
+        }
+        /* 2. Make the text bright once the user actually selects an option */
+        select.form-control:valid {
+        color: var(--text-primary);
+        }
+        /* 3. Force the dropdown menu itself to have a dark background with bright text */
+        select.form-control option {
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+        padding: 10px;
+        }
+
+        /* Animations */
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.8rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .stats-row { gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <h2>Loading AKDEV LABS...</h2>
+        <div id="loading-percent">0%</div>
+    </div>
+
+    <div class="bg-spinner"></div>
+
+    <nav>
+        <div class="container nav-content">
+            <a href="#home" class="logo">AADHAVAN <span style="color: var(--accent-primary)">K.</span></a>
+            <button class="hamburger" id="mobile-menu-btn">☰</button>
+            <div class="nav-links" id="nav-links">
+                <a href="#impact">Impact</a>
+                <a href="#projects">Ecosystem</a>
+                <a href="#skills">Skills</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="fade-in-up">
+                <span class="hero-subtitle">Turning real-world problems into usable web solutions.</span>
+                <h1 class="hero-title">AADHAVAN <span class="highlight">K</span></h1>
+                
+                <div class="typing-text">
+                    <span id="typed-output"></span><span class="cursor"></span>
+                </div>
+
+                <div class="hero-impact">
+                    "I build practical web tools and campus utilities focused on performance and usability."
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                    <a href="#projects" class="btn btn-primary">Explore Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" style="background-color: var(--bg-secondary); padding-top: 4rem; padding-bottom: 4rem;">
+        <div class="container">
+            <h2 class="section-title fade-in-up" style="margin-bottom: 2rem;">Impact & Achievements</h2>
+            <div class="stats-row fade-in-up" style="transition-delay: 0.1s;">
+                <div class="stat-item">
+                    <h3>100+</h3>
+                    <p>Users Tested Projects</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2</h3>
+                    <p>Real-world Problems Solved</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1</h3>
+                    <p>Live Deployed App</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" style="padding-top: 5rem; padding-bottom: 5rem;">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Technical Arsenal</h2>
+            <div class="skills-grid fade-in-up" style="transition-delay: 0.1s;">
+                
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-list">
+                        <span class="skill-badge">HTML5</span>
+                        <span class="skill-badge">CSS3</span>
+                        <span class="skill-badge">JavaScript (ES6+)</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <div class="skill-list">
+                        <span class="skill-badge">C++</span>
+                        <span class="skill-badge">Java</span>
+                        <span class="skill-badge">Python</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Tools & Deployment</h3>
+                    <div class="skill-list">
+                        <span class="skill-badge">Git & GitHub</span>
+                        <span class="skill-badge">Vercel</span>
+                        <span class="skill-badge">Firebase (Auth/DB)</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" style="background-color: var(--bg-secondary);">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Engineering Portfolio</h2>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; margin-top: -1rem;">A collection of high-performance utilities and apps developed entirely by me.</p>
+            
+            <div class="projects-grid">
+                
+                <div class="project-card fade-in-up">
+                    <div class="project-media-wrapper">
+                        <video controls muted loop playsinline poster="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=800">
+                            <source src="demo_cit_food.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">CIT Food Finder</h3>
+                        
+                        <div class="psr-framework">
+                            <div class="psr-item">
+                                <h4>Problem</h4>
+                                <p>Students waste time deciding where to eat and waiting in long campus queues.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Solution</h4>
+                                <p>Built an interactive platform to compare, filter, and analyze food options with a clean UI.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>How it works</h4>
+                                <p>Uses Vanilla JavaScript to dynamically filter JSON data structures and update the DOM. State is managed locally to ensure zero server latency during category switching.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Future Work</h4>
+                                <p>Implementing Firebase for centralized queue updates and authenticated user reviews.</p>
+                            </div>
+                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
+                                <h4 style="color: var(--text-primary);">Result</h4>
+                                <p style="color: var(--accent-primary); font-weight: 600;">Improved user experience based on real student feedback during campus testing.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">Vanilla JS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://cit-food-finder.vercel.app/" target="_blank" class="btn btn-primary">View Live</a>
+                            <a href="https://github.com/adhavanmasscoc-maker/CIT-Food-Finder" target="_blank" class="btn btn-outline">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="project-media-wrapper" style="background: #111;">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800" alt="Aadhavan IDE Screenshot">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Aadhavan IDE v8.1 Elite</h3>
+                        
+                        <div class="psr-framework">
+                            <div class="psr-item">
+                                <h4>Problem</h4>
+                                <p>Students lack a fast, multi-language compiler that works seamlessly directly in the browser.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Solution</h4>
+                                <p>Engineered a lightweight web IDE supporting C++, Python, Java, and Web technologies.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>How it works</h4>
+                                <p>Integrates with secure remote execution APIs to compile and return standard output in real-time within a Monaco-style editor interface.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Future Work</h4>
+                                <p>Adding collaborative multiplayer coding and GitHub repo syncing.</p>
+                            </div>
+                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
+                                <h4 style="color: var(--text-primary);">Result</h4>
+                                <p style="color: var(--accent-primary); font-weight: 600;">Zero-setup compilation saving minutes of dev environment configuration per session.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">C++</span>
+                            <span class="tech-tag">Java</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Web APIs</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://akdev-official.vercel.app/ide/" target="_blank" class="btn btn-primary">View Live</a>
+                            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up" style="transition-delay: 0.2s;">
+                    <div class="project-media-wrapper">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" alt="Ultra Tools Screenshot">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AKDEV Ultra Tools (25-in-1)</h3>
+                        
+                        <div class="psr-framework">
+                            <div class="psr-item">
+                                <h4>Problem</h4>
+                                <p>Developers constantly switch between multiple slow, ad-heavy websites for basic encoding, formatting, and regex testing.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Solution</h4>
+                                <p>Consolidated 25 essential developer tools into one rapid, offline-capable suite.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>How it works</h4>
+                                <p>Utilizes client-side JavaScript for string manipulation, base64 encoding, and JSON parsing to ensure operations are instant and data never leaves the browser.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Future Work</h4>
+                                <p>Building a desktop PWA version with global shortcut keys.</p>
+                            </div>
+                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
+                                <h4 style="color: var(--text-primary);">Result</h4>
+                                <p style="color: var(--accent-primary); font-weight: 600;">Streamlined developer workflow with zero external server dependencies.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">Advanced JS</span>
+                            <span class="tech-tag">Regex</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://akdev-official.vercel.app/tools/" target="_blank" class="btn btn-primary">View Live</a>
+                            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up">
+                    <div class="project-media-wrapper">
+                        <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&w=800&q=80" alt="Smart File Organizer Screenshot">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Smart File Organizer</h3>
+                        
+                        <div class="psr-framework">
+                            <div class="psr-item">
+                                <h4>Problem</h4>
+                                <p>Media compression and conversion tools often require risky server uploads and are cluttered with ads.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Solution</h4>
+                                <p>Created a client-side utility to securely organize, compress, and manage images, video, audio, and documents.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>How it works</h4>
+                                <p>Leverages the HTML5 Web API (FileReader, Blob, Canvas) to process, resize, and convert media entirely within the user's local memory.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Future Work</h4>
+                                <p>Implementing WebAssembly (WASM) for faster heavy video compression.</p>
+                            </div>
+                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
+                                <h4 style="color: var(--text-primary);">Result</h4>
+                                <p style="color: var(--accent-primary); font-weight: 600;">100% privacy maintained with zero server uploads and instantaneous processing.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">JS Blob API</span>
+                            <span class="tech-tag">File Handling</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://akdev-official.vercel.app/app/" target="_blank" class="btn btn-primary">View Live</a>
+                            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card fade-in-up" style="transition-delay: 0.1s;">
+                    <div class="project-media-wrapper">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="AI Labs Screenshot">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">AKDEV AI Labs</h3>
+                        
+                        <div class="psr-framework">
+                            <div class="psr-item">
+                                <h4>Problem</h4>
+                                <p>Accessing modern AI engines requires multiple subscriptions and disjointed platforms.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Solution</h4>
+                                <p>Built an experimental AI server playground combining code helpers and text generation.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>How it works</h4>
+                                <p>Interfaces with Groq/OpenAI APIs via asynchronous fetch requests, managing conversational context arrays in local storage for a seamless chat experience.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Future Work</h4>
+                                <p>Adding custom RAG (Retrieval-Augmented Generation) for codebase-specific AI queries.</p>
+                            </div>
+                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
+                                <h4 style="color: var(--text-primary);">Result</h4>
+                                <p style="color: var(--accent-primary); font-weight: 600;">Successfully integrated AI API endpoints for rapid, seamless prompt execution.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">API Integration</span>
+                            <span class="tech-tag">JavaScript</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://akdev-project.vercel.app/" target="_blank" class="btn btn-primary">View Live</a>
+                            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline">Source Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in-up">
+                    <div class="project-media-wrapper" style="background: #000; display:flex; align-items:center; justify-content:center; color: white;">
+                        <svg viewBox="0 0 24 24" width="80" height="80" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Interactive Resume Maker</h3>
+                        
+                        <div class="psr-framework">
+                            <div class="psr-item">
+                                <h4>Problem</h4>
+                                <p>Building ATS-friendly, visually striking resumes usually requires paying for premium builders or battling with Word formatting.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>Solution</h4>
+                                <p>Built a split-screen web application that allows live editing and instant PDF generation of a modern, Notion-style resume.</p>
+                            </div>
+                            <div class="psr-item">
+                                <h4>How it works</h4>
+                                <p>Leverages Vanilla JavaScript for real-time DOM synchronization and html2pdf.js for flawless client-side PDF rendering without a backend.</p>
+                            </div>
+                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
+                                <h4 style="color: var(--text-primary);">Result</h4>
+                                <p style="color: var(--accent-primary); font-weight: 600;">100% free, highly optimized developer resumes generated in seconds.</p>
+                            </div>
+                        </div>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">html2pdf.js</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="portfolio/resume-maker/index.html" class="btn btn-primary">Launch Tool</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container about-container">
+            <h2 class="section-title fade-in-up">Behind the <span class="highlight">Code</span></h2>
+            
+            <div class="about-grid fade-in-up">
+                <div class="about-text">
+                    <p style="font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem; border-left: 4px solid var(--accent-secondary); padding-left: 1rem;">
+                        Hi, I'm AADHAVAN K. I aim to become a full-stack developer focused on solving real-world problems with scalable systems.
+                    </p>
+                    <p>As a Computer Science Engineering student, I balance academic coursework (C++, System Design) with building practical tools.</p>
+                    <p>I focus on creating clean, intuitive interfaces backed by solid logic. I look for bottlenecks in daily life and engineer solutions for them without relying on bloated generic frameworks.</p>
+                </div>
+
+                <div class="timeline-wrapper" style="background: var(--bg-secondary); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Learning Timeline</h3>
+                    <ul class="timeline">
+                        <li><span class="timeline-date">2025</span> Started Web Development</li>
+                        <li><span class="timeline-date">2026</span> Built 5+ Real-World Utilities</li>
+                        <li><span class="timeline-date">Now</span> Learning Backend & System Design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="github-banner fade-in-up">
+        <div class="container">
+            <svg height="40" viewBox="0 0 16 16" width="40" fill="var(--text-primary)" style="margin-bottom: 1rem;">
+                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            </svg>
+            <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Engineering & Open Source</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                I build clean, scalable systems. Review my code architecture, commits, and problem-solving approach directly on my GitHub.
+            </p>
+            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline" style="border-color: var(--accent-primary); color: var(--accent-primary);">View GitHub Profile</a>
+        </div>
+    </section>
+
+    <section style="background-color: var(--bg-primary); padding-bottom: 2rem;">
+        <div class="container">
+            <div class="cta-section fade-in-up">
+                <h2>Let’s Build Something Together</h2>
+                <p>I’m open to internships, software engineering collaborations, and junior developer roles.</p>
+                <a href="#contact" class="btn btn-primary">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title fade-in-up">Get in Touch</h2>
+            <div class="contact-grid">
+                
+                <div class="contact-info fade-in-up">
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">
+                        Found a bug? Have an idea for a tool? Or hiring for an internship? Let me know below.
+                    </p>
+                    <div style="margin-bottom: 2rem;">
+                        <div style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Direct Email</div>
+                        <a href="mailto:akdev.projects.official@gmail.com" class="contact-info-value mono">akdev.projects.official@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper fade-in-up" style="transition-delay: 0.2s;">
+                    
+                    <div id="formStatus"></div>
+
+                    <form id="contactForm" class="contact-form">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <input type="text" name="user_name" class="form-control" placeholder="Your Name" required>
+                            <input type="email" name="user_email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        
+                        <select name="issue_type" class="form-control" style="cursor: pointer;" required>
+                            <option value="" disabled selected>What's on your mind?</option>
+                            <option value="Internship/Job">Internship / Job Opportunity</option>
+                            <option value="Campus Problem">Report a Problem to Fix</option>
+                            <option value="Feature Request">Feature Request / Idea</option>
+                            <option value="Bug Report">Found a Bug in my ecosystem</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <textarea name="message" class="form-control" style="min-height: 120px; resize: vertical;" placeholder="Describe the issue, feature, or message..." required></textarea>
+                        <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Message</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border-color); background: var(--bg-primary);">
+        <p class="mono" style="color: var(--text-secondary); margin-bottom: 0.5rem;">© 2026 AKDEV LABS.</p>
+        <p class="mono" style="color: var(--accent-primary); opacity: 0.8; font-size: 0.8rem;">Last updated: April 2026</p>
+    </footer>
+
+    <button id="scrollTopBtn" class="btn btn-primary">↑</button>
+
+    <script>
+        // Mobile Navigation Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        navLinks.addEventListener('click', () => {
+            if(window.innerWidth <= 768) { navLinks.classList.remove('active'); }
+        });
+
+        // 1. Advanced Loading Screen Logic with %
+        window.addEventListener("load", () => {
+            let perc = 0;
+            const percentEl = document.getElementById('loading-percent');
+            const loader = document.getElementById('loader');
+            
+            const interval = setInterval(() => {
+                perc += Math.floor(Math.random() * 25) + 10;
+                if (perc >= 100) {
+                    perc = 100;
+                    percentEl.innerText = perc + "%";
+                    clearInterval(interval);
+                    loader.style.opacity = "0";
+                    setTimeout(() => { loader.style.display = "none"; }, 500);
+                } else {
+                    percentEl.innerText = perc + "%";
+                }
+            }, 150);
+        });
+
+        // 2. Mouse Glow Effect (Optimized)
+        let ticking = false;
+        document.addEventListener("mousemove", (e) => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    document.body.style.setProperty('--mouse-x', e.clientX + 'px');
+                    document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // 3. Scroll-to-Top Button
+        const btn = document.getElementById("scrollTopBtn");
+        window.onscroll = function() {
+            btn.style.display = window.scrollY > 300 ? "block" : "none";
+        };
+        btn.onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // 4. Intersection Observer for Scroll Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+        });
+
+        // 5. Typing Animation Logic
+        const words = ["Building Real-World Tools", "Solving Everyday Problems", "Learning System Design"];
+        let wordIndex = 0; let charIndex = 0; let isDeleting = false;
+        const typedOutput = document.getElementById("typed-output");
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typedOutput.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedOutput.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            let typingSpeed = isDeleting ? 40 : 80;
+            if (!isDeleting && charIndex === currentWord.length) {
+                typingSpeed = 2500; isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false; wordIndex = (wordIndex + 1) % words.length; typingSpeed = 500;
+            }
+            setTimeout(typeEffect, typingSpeed);
+        }
+        setTimeout(typeEffect, 1000);
+
+       // 6. Secure SheetDB Form Submission (Replaces EmailJS)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const statusEl = document.getElementById('formStatus');
+    const submitBtn = this.querySelector('button[type="submit"]');
+    
+    // Grab values from your form
+    const nameInput = this.querySelector('input[name="user_name"]').value.trim();
+    const emailInput = this.querySelector('input[name="user_email"]').value.trim();
+    const typeInput = this.querySelector('select[name="issue_type"]').value || "Contact";
+    const msgInput = this.querySelector('textarea[name="message"]').value.trim();
+
+    // Form Validation (Length check)
+    if(msgInput.length < 15) {
+        statusEl.style.color = "var(--red)";
+        statusEl.innerText = "⚠️ Message is too short. Please provide more context.";
+        return;
+    }
+
+    // Simple Rate Limiting (Prevent spamming)
+    const lastSent = localStorage.getItem('akdev_email_sent');
+    const nowMs = Date.now();
+    if (lastSent && (nowMs - lastSent < 60000)) { // 1 minute cooldown
+        statusEl.style.color = "var(--red)";
+        statusEl.innerText = "⏳ Please wait a minute before sending another message.";
+        return;
+    }
+
+    // Processing UI
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = "Sending...";
+    submitBtn.disabled = true;
+    statusEl.style.color = "var(--text-primary)";
+    statusEl.innerText = "Processing your request...";
+
+    // Create perfectly clean timestamp (YYYY-MM-DD HH:MM:SS)
+    const now = new Date();
+    const cleanTimestamp = 
+        now.getFullYear() + '-' + 
+        String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+        String(now.getDate()).padStart(2, '0') + ' ' + 
+        String(now.getHours()).padStart(2, '0') + ':' + 
+        String(now.getMinutes()).padStart(2, '0') + ':' + 
+        String(now.getSeconds()).padStart(2, '0');
+
+    // ⚠️ Prepare SheetBest Payload (Directly mapping headers)
+    // Removed the "data" wrapper used by SheetDB
+    const sheetBestPayload = {
+        ID: "pt_" + Date.now(), // 'pt_' prefix for Portfolio
+        SiteName: "AKDEV Portfolio",
+        Type: typeInput,
+        Name: nameInput || "Anonymous",
+        Email: emailInput || "N/A",
+        Rating: "N/A", 
+        Message: msgInput,
+        Timestamp: cleanTimestamp,
+        Status: "Pending"
+    };
+
+    // Send via SheetBest
+    fetch('https://api.sheetbest.com/sheets/7545ab4f-83a2-4105-9cdf-6d94ffe4ef27', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(sheetBestPayload) // ⚠️ Sending the direct object
+    })
+    .then((response) => {
+        if (!response.ok) throw new Error('SheetBest response not ok');
+        return response.json();
+    })
+    .then((data) => {
+        statusEl.style.color = "var(--green)";
+        statusEl.innerText = "Message sent successfully 🚀 I will reply soon.";
+        localStorage.setItem('akdev_email_sent', Date.now()); // Set rate limit timer
+        this.reset();
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
+    })
+    .catch((error) => {
+        statusEl.style.color = "var(--red)";
+        statusEl.innerText = "Failed to send message ❌ Please try emailing directly.";
+        console.error('SheetBest Error:', error);
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
+    });
+});
+    </script>
+</body>
+</html>
