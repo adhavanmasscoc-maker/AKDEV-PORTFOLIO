@@ -1,0 +1,20 @@
+AKDEV Portfolio License
+Copyright (c) 2026 AKDEV. All Rights Reserved.
+
+This portfolio website, including its source code, design, branding,
+projects, graphics, and associated content, is proprietary software owned by AKDEV.
+
+Permission is granted to:
+- View the source code
+- Learn from the project for educational purposes
+
+You may NOT:
+- Copy or redistribute substantial portions of the project
+- Reupload this portfolio under another identity
+- Remove branding or credits
+- Use the design or structure commercially
+- Sell or sublicense the software
+
+Unauthorized reproduction or commercial usage is prohibited.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
