@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AADHAVAN K | Software Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
-        (function(){
+        (function () {
             // 🚨 REPLACE THIS WITH YOUR PUBLIC KEY FROM EMAILJS 🚨
             emailjs.init("YOUR_PUBLIC_KEY");
         })();
@@ -33,7 +36,12 @@
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -51,13 +59,13 @@
             position: fixed;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(0,255,204,0.08), transparent 60%);
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.08), transparent 60%);
             pointer-events: none;
             top: var(--mouse-y);
             left: var(--mouse-x);
             transform: translate(-50%, -50%);
             transition: top 0.1s ease-out, left 0.1s ease-out;
-            will-change: transform; 
+            will-change: transform;
             z-index: 9999;
         }
 
@@ -74,12 +82,14 @@
             z-index: 10000;
             transition: opacity 0.5s ease;
         }
+
         #loader h2 {
             background: var(--gradient-main);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
         }
+
         #loading-percent {
             font-family: 'Fira Code', monospace;
             color: var(--accent-primary);
@@ -94,7 +104,7 @@
             left: 50%;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(0,255,204,0.05), transparent 70%);
+            background: radial-gradient(circle, rgba(0, 255, 204, 0.05), transparent 70%);
             transform: translate(-50%, -50%);
             z-index: -1;
             animation: spin 20s linear infinite;
@@ -102,12 +112,23 @@
         }
 
         @keyframes spin {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
         }
 
-        h1, h2, h3, h4 { font-weight: 800; line-height: 1.2; }
-        
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
         .highlight {
             background: var(--gradient-main);
             -webkit-background-clip: text;
@@ -115,192 +136,888 @@
             display: inline-block;
         }
 
-        .mono { font-family: 'Fira Code', monospace; }
+        .mono {
+            font-family: 'Fira Code', monospace;
+        }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-        section { padding: 6rem 0; position: relative; z-index: 1; }
+        section {
+            padding: 6rem 0;
+            position: relative;
+            z-index: 1;
+        }
 
         .section-title {
-            font-size: 2.5rem; margin-bottom: 3rem; text-align: center; position: relative;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
         }
 
         .section-title::after {
-            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
-            width: 60px; height: 4px; background: var(--gradient-main); border-radius: 2px;
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-main);
+            border-radius: 2px;
         }
 
         /* Nav & Mobile Toggle */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 1.2rem 0; z-index: 100;
-            background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
         }
-        .nav-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; color: var(--text-primary); text-decoration: none;}
-        .nav-links { display: flex; gap: 2rem; align-items: center;}
-        .nav-links a { color: var(--text-primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent-primary); }
-        .hamburger { display: none; font-size: 1.5rem; cursor: pointer; color: var(--text-primary); background: none; border: none; }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            background: none;
+            border: none;
+        }
 
         @media (max-width: 768px) {
-            .hamburger { display: block; }
-            .nav-links { 
-                display: none; flex-direction: column; position: absolute; top: 100%; left: 0; 
-                width: 100%; background: var(--bg-secondary); padding: 2rem 0; border-bottom: 1px solid var(--border-color);
-                box-shadow: var(--card-shadow); gap: 1.5rem; text-align: center;
+            .hamburger {
+                display: block;
             }
-            .nav-links.active { display: flex; }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--bg-secondary);
+                padding: 2rem 0;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: var(--card-shadow);
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
         }
 
         /* Buttons with Glowing Effects */
         .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-            padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none;
-            transition: var(--transition); cursor: pointer; border: none; font-size: 1rem;
-            position: relative; z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .btn-primary { background: var(--gradient-main); color: #000; box-shadow: var(--glow-primary); }
-        .btn-primary:hover { transform: translateY(-2px) scale(1.02); box-shadow: var(--glow-primary-hover); }
+        .btn-primary {
+            background: var(--gradient-main);
+            color: #000;
+            box-shadow: var(--glow-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--glow-primary-hover);
+        }
 
         .btn-outline {
-            background: transparent; color: var(--text-primary); border: 1px solid var(--border-color);
-            position: relative; overflow: hidden;
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
         }
-        .btn-outline:hover { border-color: var(--accent-primary); transform: translateY(-2px) scale(1.02); box-shadow: var(--glow-primary); color: var(--accent-primary);}
+
+        .btn-outline:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: var(--glow-primary);
+            color: var(--accent-primary);
+        }
 
         #scrollTopBtn {
-            position: fixed; bottom: 30px; right: 30px; display: none; z-index: 99;
-            width: 50px; height: 50px; border-radius: 50%; font-size: 1.5rem; padding: 0;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            z-index: 99;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            padding: 0;
             box-shadow: var(--card-shadow);
         }
 
         /* Github Section Banner CSS */
-        .github-banner { text-align: center; padding: 5rem 2rem; background: var(--bg-tertiary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .github-banner {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
 
         /* 1. Hero Section */
         .hero {
-            min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            text-align: center; position: relative; padding-top: 6rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding-top: 6rem;
         }
-        .hero::before {
-            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 600px; height: 600px; background: radial-gradient(circle, rgba(153, 51, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-            z-index: -1; pointer-events: none;
-        }
-        .hero-subtitle { font-size: 1.2rem; color: var(--accent-primary); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
-        .hero-title { font-size: 4.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: -1px;}
-        
-        /* Typing Animation Setup */
-        .typing-text { font-size: 1.5rem; color: var(--text-secondary); margin-bottom: 1.5rem; height: 2rem;}
-        .cursor { display: inline-block; width: 3px; height: 1.2em; background-color: var(--accent-primary); animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 5px;}
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .hero-impact { font-size: 1.1rem; color: var(--text-primary); max-width: 650px; margin: 0 auto 2.5rem auto; border-left: 3px solid var(--accent-secondary); padding-left: 1rem; text-align: left; font-style: italic;}
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(153, 51, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent-primary);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        /* Typing Animation Setup */
+        .typing-text {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            height: 2rem;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: var(--accent-primary);
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .hero-impact {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            max-width: 650px;
+            margin: 0 auto 2.5rem auto;
+            border-left: 3px solid var(--accent-secondary);
+            padding-left: 1rem;
+            text-align: left;
+            font-style: italic;
+        }
 
         /* Impact Stats */
-        .stats-row { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;}
-        .stat-item { text-align: center; }
-        .stat-item h3 { font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 0.5rem;}
-        .stat-item p { font-size: 0.9rem; color: var(--text-secondary); font-family: 'Fira Code', monospace; text-transform: uppercase; letter-spacing: 1px;}
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-family: 'Fira Code', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
         /* Structured Skills Section */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
-        .skill-category { background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; text-align: left; }
-        .skill-category h3 { color: var(--accent-primary); margin-bottom: 1.5rem; font-size: 1.2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;}
-        .skill-list { display: flex; flex-wrap: wrap; gap: 0.8rem; }
-        .skill-badge { background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; font-size: 0.95rem; color: var(--text-primary); }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+        }
+
+        .skill-category h3 {
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
 
         /* 3. Projects Section */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2.5rem; }
-        .project-card {
-            background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px;
-            overflow: hidden; transition: var(--transition); display: flex; flex-direction: column; height: 100%;
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
         }
-        .project-card:hover { transform: translateY(-10px); border-color: rgba(0, 255, 204, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); }
-        
-        .project-media-wrapper { background: var(--bg-tertiary); position: relative; overflow: hidden; border-bottom: 1px solid var(--border-color); height: 240px; display: flex; align-items: center; justify-content: center;}
-        .project-media-wrapper img, .project-media-wrapper video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; display: block;}
-        .project-card:hover .project-media-wrapper img { transform: scale(1.02); }
 
-        .project-content { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; }
-        .project-title { font-size: 1.6rem; margin-bottom: 1.5rem; color: var(--text-primary); }
-        
-        /* Engineering Problem/Solution/Result/Future Framework */
-        .psr-framework { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; flex-grow: 1;}
-        .psr-item { background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--border-color); transition: border-color 0.3s;}
-        .psr-item:hover { border-left-color: var(--accent-primary); background: rgba(255,255,255,0.04);}
-        .psr-item h4 { font-size: 0.85rem; color: var(--accent-primary); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 1px;}
-        .psr-item p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0; line-height: 1.5;}
+        .filter-container {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
 
-        .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
-        .tech-tag { font-size: 0.75rem; padding: 0.3rem 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); border-radius: 20px; color: var(--text-primary); font-family: 'Fira Code', monospace; }
-        .project-links { display: flex; gap: 1rem; margin-top: auto; }
-        .project-links .btn { flex: 1; font-size: 0.9rem; }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-main);
+            color: #000;
+            border-color: transparent;
+        }
+
+        .projects-carousel-container {
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 1rem 0 3rem 0;
+        }
+
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .project-card {
+            width: 100%;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .project-card {
+                min-width: 85vw;
+                max-width: 85vw;
+            }
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .project-label {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--border-color);
+        }
+
+        .label-live {
+            color: var(--accent-primary);
+        }
+
+        .label-exp {
+            color: var(--accent-secondary);
+        }
+
+        .label-tool {
+            color: #ffcc00;
+        }
+
+        .project-media-wrapper {
+            height: 280px;
+            background: #000;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-media-wrapper img,
+        .project-media-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .project-card:hover .project-media-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .project-content {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-header-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-impact-line {
+            color: var(--accent-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Collapsible PSR */
+        .details-toggle {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .details-toggle:hover {
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .psr-collapsible {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+        }
+
+        .psr-collapsible.active {
+            max-height: 1000px;
+            margin-top: 1rem;
+            padding: 1.2rem;
+            border: 1px solid rgba(0, 255, 204, 0.1);
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .psr-mini-item {
+            margin-bottom: 1rem;
+        }
+
+        .psr-mini-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .psr-mini-item h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .psr-mini-item p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.7rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .carousel-nav {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-dot.active {
+            background: var(--accent-primary);
+            width: 25px;
+            border-radius: 5px;
+        }
+
+        /* 4. Resume Section */
+        .resume-section {
+            background: var(--bg-tertiary);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            margin: 4rem 0;
+        }
+
+        .resume-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            align-items: center;
+            text-align: left;
+        }
+
+        @media (max-width: 992px) {
+            .resume-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .resume-preview-box {
+            background: #fff;
+            aspect-ratio: 1 / 1.414;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .resume-preview-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .resume-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .resume-preview-box:hover .resume-overlay {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .resume-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .resume-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .resume-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* 5. Floating Socials */
+        .floating-socials {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--card-shadow);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            box-shadow: var(--glow-primary);
+        }
+
+        .social-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .neon-linkedin:hover {
+            box-shadow: 0 0 15px #0077b5;
+            border-color: #0077b5;
+            color: #0077b5;
+        }
+
+        .neon-github:hover {
+            box-shadow: 0 0 15px #fff;
+            border-color: #fff;
+            color: #fff;
+        }
 
         /* 4. About & Timeline Section */
-        .about-container { max-width: 900px; margin: 0 auto; }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .about-content p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8; }
-        
-        /* Learning Timeline */
-        .timeline { list-style: none; border-left: 2px solid var(--border-color); padding-left: 1.5rem; margin-top: 2rem;}
-        .timeline li { position: relative; margin-bottom: 1.5rem; color: var(--text-secondary); font-size: 1.05rem;}
-        .timeline li::before {
-            content: ''; position: absolute; left: -1.85rem; top: 6px; width: 12px; height: 12px;
-            background: var(--bg-primary); border: 2px solid var(--accent-primary); border-radius: 50%; box-shadow: var(--glow-primary);
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
         }
-        .timeline-date { font-weight: 800; color: var(--text-primary); margin-right: 0.5rem; font-family: 'Fira Code', monospace; font-size: 0.9rem;}
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Learning Timeline */
+        .timeline {
+            list-style: none;
+            border-left: 2px solid var(--border-color);
+            padding-left: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .timeline li {
+            position: relative;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .timeline li::before {
+            content: '';
+            position: absolute;
+            left: -1.85rem;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            box-shadow: var(--glow-primary);
+        }
+
+        .timeline-date {
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-right: 0.5rem;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
 
         /* CTA Section */
-        .cta-section { text-align: center; padding: 5rem 2rem; background: linear-gradient(to bottom, transparent, rgba(0, 255, 204, 0.03)); border-radius: 24px; border: 1px solid var(--border-color); margin-top: 2rem;}
-        .cta-section h2 { font-size: 2.2rem; margin-bottom: 1rem;}
-        .cta-section p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem;}
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 204, 0.03));
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
 
         /* 6. Contact Section */
-        .contact { background: var(--bg-secondary); border-top: 1px solid var(--border-color); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; }
-        .contact-info-value { font-size: 1.2rem; font-weight: 600; color: var(--accent-primary); text-decoration: none; }
-        
-        .form-control {
-            width: 100%; background: var(--bg-tertiary); border: 1px solid var(--border-color);
-            border-radius: 8px; padding: 1rem 1.5rem; color: var(--text-primary); font-family: inherit; font-size: 1rem; margin-bottom: 1rem;
+        .contact {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
         }
-        .form-control:focus { outline: none; border-color: var(--accent-primary); background: rgba(255, 255, 255, 0.02); }
-        
-        #formStatus { font-size: 0.95rem; margin-bottom: 1rem; font-weight: 600; min-height: 24px;}
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+        }
+
+        .contact-info-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        .form-control {
+            width: 100%;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        #formStatus {
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            min-height: 24px;
+        }
+
         /* ════ FIX FOR SELECT DROPDOWN VISIBILITY ════ */
         /* 1. Make the placeholder text dimmer so it looks like a placeholder */
         select.form-control:invalid {
-        color: var(--text-secondary);
+            color: var(--text-secondary);
         }
+
         /* 2. Make the text bright once the user actually selects an option */
         select.form-control:valid {
-        color: var(--text-primary);
+            color: var(--text-primary);
         }
+
         /* 3. Force the dropdown menu itself to have a dark background with bright text */
         select.form-control option {
-        background-color: var(--bg-secondary);
-        color: var(--text-primary);
-        padding: 10px;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 10px;
         }
 
         /* Animations */
-        .fade-in-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.8rem; }
-            .about-grid { grid-template-columns: 1fr; }
-            .contact-grid { grid-template-columns: 1fr; }
-            .stats-row { gap: 2rem; }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                gap: 2rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div id="loader">
-        <h2>Loading AKDEV LABS...</h2>
+        <h2>Loading AKNEX LABS...</h2>
         <div id="loading-percent">0%</div>
     </div>
 
@@ -325,7 +1042,7 @@
             <div class="fade-in-up">
                 <span class="hero-subtitle">Turning real-world problems into usable web solutions.</span>
                 <h1 class="hero-title">AADHAVAN <span class="highlight">K</span></h1>
-                
+
                 <div class="typing-text">
                     <span id="typed-output"></span><span class="cursor"></span>
                 </div>
@@ -365,7 +1082,7 @@
         <div class="container">
             <h2 class="section-title fade-in-up">Technical Arsenal</h2>
             <div class="skills-grid fade-in-up" style="transition-delay: 0.1s;">
-                
+
                 <div class="skill-category">
                     <h3>Frontend</h3>
                     <div class="skill-list">
@@ -399,258 +1116,359 @@
 
     <section id="projects" style="background-color: var(--bg-secondary);">
         <div class="container">
-            <h2 class="section-title fade-in-up">Engineering Portfolio</h2>
-            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 3rem; margin-top: -1rem;">A collection of high-performance utilities and apps developed entirely by me.</p>
-            
-            <div class="projects-grid">
-                
-                <div class="project-card fade-in-up">
-                    <div class="project-media-wrapper">
-                        <video controls muted loop playsinline poster="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=800">
-                            <source src="demo_cit_food.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">CIT Food Finder</h3>
-                        
-                        <div class="psr-framework">
-                            <div class="psr-item">
-                                <h4>Problem</h4>
-                                <p>Students waste time deciding where to eat and waiting in long campus queues.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Solution</h4>
-                                <p>Built an interactive platform to compare, filter, and analyze food options with a clean UI.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>How it works</h4>
-                                <p>Uses Vanilla JavaScript to dynamically filter JSON data structures and update the DOM. State is managed locally to ensure zero server latency during category switching.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Future Work</h4>
-                                <p>Implementing Firebase for centralized queue updates and authenticated user reviews.</p>
-                            </div>
-                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
-                                <h4 style="color: var(--text-primary);">Result</h4>
-                                <p style="color: var(--accent-primary); font-weight: 600;">Improved user experience based on real student feedback during campus testing.</p>
-                            </div>
-                        </div>
+            <div class="projects-header fade-in-up">
+                <div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 1rem;">Engineering Portfolio</h2>
+                    <p style="color: var(--text-secondary);">A collection of high-performance products and campus
+                        utilities.</p>
+                </div>
+                <div class="filter-container">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web Apps</button>
+                    <button class="filter-btn" data-filter="tool">Tools</button>
+                    <button class="filter-btn" data-filter="ai">AI</button>
+                </div>
+            </div>
 
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">Vanilla JS</span>
+            <div class="projects-carousel-container">
+                <div class="projects-grid" id="projects-grid">
+
+                    <!-- Focusly Study OS -->
+                    <div class="project-card fade-in-up" data-category="web">
+                        <div class="project-label label-live">🚀 Core Ecosystem</div>
+                        <div class="project-media-wrapper">
+                            <img src="focusly sample.png"
+                                alt="Focusly Study OS" loading="lazy">
                         </div>
-                        <div class="project-links">
-                            <a href="https://cit-food-finder.vercel.app/" target="_blank" class="btn btn-primary">View Live</a>
-                            <a href="https://github.com/adhavanmasscoc-maker/CIT-Food-Finder" target="_blank" class="btn btn-outline">Source Code</a>
+                        <div class="project-content">
+                            <div class="project-header-info">
+                                <h3 class="project-title">Focusly Study OS</h3>
+                                <span class="project-impact-line">Comprehensive SaaS study environment for global students.</span>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">Tailwind</span>
+                            </div>
+
+                            <button class="details-toggle">View Engineering Details ▾</button>
+
+                            <div class="psr-collapsible">
+                                <div class="psr-mini-item">
+                                    <h4>Goal</h4>
+                                    <p>Unified OS for productivity, focus tracking, and cloud-synced study notes.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Technical Result</h4>
+                                    <p>Implemented real-time sync with JSONBlob and SheetDB for persistence.</p>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://focusly-1d34c.web.app/" target="_blank"
+                                    class="btn btn-primary">Launch Focusly</a>
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- 12th Study Mentor -->
+                    <div class="project-card fade-in-up" data-category="web">
+                        <div class="project-label label-live">📚 Local Hero</div>
+                        <div class="project-media-wrapper">
+                            <img src="12TH.PNG"
+                                alt="12th Study Mentor" loading="lazy">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header-info">
+                                <h3 class="project-title">12th Study Mentor</h3>
+                                <span class="project-impact-line">Optimized exam prep engine for TN State Board students.</span>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">Vanilla JS</span>
+                                <span class="tech-tag">PWA</span>
+                                <span class="tech-tag">LocalDB</span>
+                            </div>
+
+                            <button class="details-toggle">View Engineering Details ▾</button>
+
+                            <div class="psr-collapsible">
+                                <div class="psr-mini-item">
+                                    <h4>Purpose</h4>
+                                    <p>Providing offline-first resources, formula sheets, and countdowns for board exams.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Tech Highlight</h4>
+                                    <p>Engineered a lightweight question bank system with zero server dependency.</p>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="/study/" class="btn btn-primary">Enter Study Hub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CIT Food Finder -->
+                    <div class="project-card fade-in-up" data-category="web">
+                        <div class="project-label label-live">🚀 Live Product</div>
+                        <div class="project-media-wrapper">
+                            <img src="cit food finder sample.png"
+                                alt="CIT Food Finder Dashboard" loading="lazy">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header-info">
+                                <h3 class="project-title">CIT Food Finder</h3>
+                                <span class="project-impact-line">Reducing campus queue times by 40% through real-time
+                                    data.</span>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML/CSS</span>
+                                <span class="tech-tag">Vanilla JS</span>
+                            </div>
+
+                            <button class="details-toggle">View Engineering Details ▾</button>
+
+                            <div class="psr-collapsible">
+                                <div class="psr-mini-item">
+                                    <h4>Problem</h4>
+                                    <p>Students waste time deciding where to eat and waiting in long campus queues.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Solution</h4>
+                                    <p>Built an interactive platform to compare, filter, and analyze food options with a
+                                        clean UI.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Technical Result</h4>
+                                    <p>Optimized DOM manipulation for zero server latency during category switching.</p>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://cit-food-finder.vercel.app/" target="_blank"
+                                    class="btn btn-primary">Launch App</a>
+                                <a href="https://github.com/adhavanmasscoc-maker/CIT-Food-Finder" target="_blank"
+                                    class="btn btn-outline">Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aadhavan IDE -->
+                    <div class="project-card fade-in-up" data-category="tool">
+                        <div class="project-label label-tool">🛠️ Utility</div>
+                        <div class="project-media-wrapper">
+                            <img src="idesam.png"
+                                alt="Aadhavan IDE v8.1" loading="lazy">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header-info">
+                                <h3 class="project-title">AKNEX IDE v8.1</h3>
+                                <span class="project-impact-line">Zero-setup multi-language compiler for instant
+                                    coding.</span>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">C++</span>
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Python</span>
+                            </div>
+
+                            <button class="details-toggle">View Engineering Details ▾</button>
+
+                            <div class="psr-collapsible">
+                                <div class="psr-mini-item">
+                                    <h4>Problem</h4>
+                                    <p>Students lack a fast, multi-language compiler that works seamlessly in the
+                                        browser.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Solution</h4>
+                                    <p>Engineered a lightweight web IDE supporting remote execution via secure APIs.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Technical Result</h4>
+                                    <p>Integrated Monaco-style editor with real-time STDOUT feedback.</p>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://aknex-official.vercel.app/ide/" target="_blank"
+                                    class="btn btn-primary">Launch IDE</a>
+                                <a href="https://github.com/adhavanmasscoc-maker" target="_blank"
+                                    class="btn btn-outline">Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AKNEX Ultra Tools -->
+                    <div class="project-card fade-in-up" data-category="tool">
+                        <div class="project-label label-tool">📦 Dev Pack</div>
+                        <div class="project-media-wrapper">
+                            <img src="ultra tools 0.png"
+                                alt="AKNEX Ultra Tools" loading="lazy">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header-info">
+                                <h3 class="project-title">Ultra Tools (50-in-1)</h3>
+                                <span class="project-impact-line">Instant offline developer utilities for daily
+                                    workflows.</span>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">Advanced JS</span>
+                                <span class="tech-tag">Regex</span>
+                            </div>
+
+                            <button class="details-toggle">View Engineering Details ▾</button>
+
+                            <div class="psr-collapsible">
+                                <div class="psr-mini-item">
+                                    <h4>Problem</h4>
+                                    <p>Switching between slow, ad-heavy websites for basic encoding and formatting.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Solution</h4>
+                                    <p>Consolidated 50 essential tools into one rapid, offline-capable suite.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Technical Result</h4>
+                                    <p>Pure client-side processing ensuring data privacy and zero latency.</p>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://aknex-official.vercel.app/tools/" target="_blank"
+                                    class="btn btn-primary">Open Suite</a>
+                                <a href="https://github.com/adhavanmasscoc-maker" target="_blank"
+                                    class="btn btn-outline">Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AKNEX AI Labs -->
+                    <div class="project-card fade-in-up" data-category="ai">
+                        <div class="project-label label-exp">🧪 Experimental</div>
+                        <div class="project-media-wrapper">
+                            <img src="akdevai.png"
+                                alt="AKNEX AI Labs" loading="lazy">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header-info">
+                                <h3 class="project-title">AKNEX AI Labs</h3>
+                                <span class="project-impact-line">Unified interface for multiple LLM engines and
+                                    helpers.</span>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">API Integration</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+
+                            <button class="details-toggle">View Engineering Details ▾</button>
+
+                            <div class="psr-collapsible">
+                                <div class="psr-mini-item">
+                                    <h4>Problem</h4>
+                                    <p>Fragmented access to modern AI engines and helper tools.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Solution</h4>
+                                    <p>Built an experimental playground combining code helpers and text generation.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Technical Result</h4>
+                                    <p>Managed conversational context arrays in local storage for seamless chat.</p>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="https://akdev-project.vercel.app/" target="_blank"
+                                    class="btn btn-primary">Launch Lab</a>
+                                <a href="https://github.com/adhavanmasscoc-maker" target="_blank"
+                                    class="btn btn-outline">Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resume Maker -->
+                    <div class="project-card fade-in-up" data-category="tool">
+                        <div class="project-label label-live">🚀 Live Tool</div>
+                        <div class="project-media-wrapper">
+                            <img src="resumemakersam.png"
+                                alt="Resume Builder" loading="lazy">
+                        </div>
+                        <div class="project-content">
+                            <div class="project-header-info">
+                                <h3 class="project-title">Interactive Resume Maker</h3>
+                                <span class="project-impact-line">ATS-friendly resume builder with instant PDF
+                                    generation.</span>
+                            </div>
+
+                            <div class="project-tech">
+                                <span class="tech-tag">html2pdf.js</span>
+                                <span class="tech-tag">DOM Sync</span>
+                            </div>
+
+                            <button class="details-toggle">View Engineering Details ▾</button>
+
+                            <div class="psr-collapsible">
+                                <div class="psr-mini-item">
+                                    <h4>Problem</h4>
+                                    <p>Building professional resumes often requires paid tools or complex formatting.
+                                    </p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Solution</h4>
+                                    <p>Split-screen web application for live editing and instant rendering.</p>
+                                </div>
+                                <div class="psr-mini-item">
+                                    <h4>Technical Result</h4>
+                                    <p>Client-side PDF rendering without backend dependencies.</p>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="resume-maker/index.html" class="btn btn-primary">Launch Tool</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Resume Section -->
+    <section id="resume-download" class="container">
+        <div class="resume-section fade-in-up">
+            <div class="resume-container">
+                <div class="resume-preview-box">
+                    <img src="sample resume aaadhavan.png" alt="Aadhavan K Resume Screenshot" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="resume-overlay">
+                        <a href="aadhavankresume.html" target="_blank" class="btn btn-primary">Open Full HTML Resume</a>
                     </div>
                 </div>
-
-                <div class="project-card fade-in-up" style="transition-delay: 0.1s;">
-                    <div class="project-media-wrapper" style="background: #111;">
-                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800" alt="Aadhavan IDE Screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Aadhavan IDE v8.1 Elite</h3>
-                        
-                        <div class="psr-framework">
-                            <div class="psr-item">
-                                <h4>Problem</h4>
-                                <p>Students lack a fast, multi-language compiler that works seamlessly directly in the browser.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Solution</h4>
-                                <p>Engineered a lightweight web IDE supporting C++, Python, Java, and Web technologies.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>How it works</h4>
-                                <p>Integrates with secure remote execution APIs to compile and return standard output in real-time within a Monaco-style editor interface.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Future Work</h4>
-                                <p>Adding collaborative multiplayer coding and GitHub repo syncing.</p>
-                            </div>
-                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
-                                <h4 style="color: var(--text-primary);">Result</h4>
-                                <p style="color: var(--accent-primary); font-weight: 600;">Zero-setup compilation saving minutes of dev environment configuration per session.</p>
-                            </div>
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">C++</span>
-                            <span class="tech-tag">Java</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Web APIs</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://akdev-official.vercel.app/ide/" target="_blank" class="btn btn-primary">View Live</a>
-                            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline">Source Code</a>
-                        </div>
+                <div class="resume-content">
+                    <span class="hero-subtitle">Professional Profile</span>
+                    <h2>Aadhavan K <span class="highlight">Resume</span></h2>
+                    <p>My interactive HTML resume highlights my technical skills in Full-Stack development, AI
+                        integration, and systems engineering. Optimized for both readability and visual impact.</p>
+                    <div class="resume-btns">
+                        <a href="Aadhavan_K_Resume.pdf" download class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                            </svg>
+                            Download PDF Version
+                        </a>
+                        <a href="aadhavankresume.html" class="btn btn-outline">
+                            Live HTML View
+                        </a>
                     </div>
                 </div>
-
-                <div class="project-card fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="project-media-wrapper">
-                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800" alt="Ultra Tools Screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">AKDEV Ultra Tools (25-in-1)</h3>
-                        
-                        <div class="psr-framework">
-                            <div class="psr-item">
-                                <h4>Problem</h4>
-                                <p>Developers constantly switch between multiple slow, ad-heavy websites for basic encoding, formatting, and regex testing.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Solution</h4>
-                                <p>Consolidated 25 essential developer tools into one rapid, offline-capable suite.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>How it works</h4>
-                                <p>Utilizes client-side JavaScript for string manipulation, base64 encoding, and JSON parsing to ensure operations are instant and data never leaves the browser.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Future Work</h4>
-                                <p>Building a desktop PWA version with global shortcut keys.</p>
-                            </div>
-                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
-                                <h4 style="color: var(--text-primary);">Result</h4>
-                                <p style="color: var(--accent-primary); font-weight: 600;">Streamlined developer workflow with zero external server dependencies.</p>
-                            </div>
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">Advanced JS</span>
-                            <span class="tech-tag">Regex</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://akdev-official.vercel.app/tools/" target="_blank" class="btn btn-primary">View Live</a>
-                            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline">Source Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-in-up">
-                    <div class="project-media-wrapper">
-                        <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&w=800&q=80" alt="Smart File Organizer Screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Smart File Organizer</h3>
-                        
-                        <div class="psr-framework">
-                            <div class="psr-item">
-                                <h4>Problem</h4>
-                                <p>Media compression and conversion tools often require risky server uploads and are cluttered with ads.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Solution</h4>
-                                <p>Created a client-side utility to securely organize, compress, and manage images, video, audio, and documents.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>How it works</h4>
-                                <p>Leverages the HTML5 Web API (FileReader, Blob, Canvas) to process, resize, and convert media entirely within the user's local memory.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Future Work</h4>
-                                <p>Implementing WebAssembly (WASM) for faster heavy video compression.</p>
-                            </div>
-                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
-                                <h4 style="color: var(--text-primary);">Result</h4>
-                                <p style="color: var(--accent-primary); font-weight: 600;">100% privacy maintained with zero server uploads and instantaneous processing.</p>
-                            </div>
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">JS Blob API</span>
-                            <span class="tech-tag">File Handling</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://akdev-official.vercel.app/app/" target="_blank" class="btn btn-primary">View Live</a>
-                            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline">Source Code</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="project-card fade-in-up" style="transition-delay: 0.1s;">
-                    <div class="project-media-wrapper">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="AI Labs Screenshot">
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">AKDEV AI Labs</h3>
-                        
-                        <div class="psr-framework">
-                            <div class="psr-item">
-                                <h4>Problem</h4>
-                                <p>Accessing modern AI engines requires multiple subscriptions and disjointed platforms.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Solution</h4>
-                                <p>Built an experimental AI server playground combining code helpers and text generation.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>How it works</h4>
-                                <p>Interfaces with Groq/OpenAI APIs via asynchronous fetch requests, managing conversational context arrays in local storage for a seamless chat experience.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Future Work</h4>
-                                <p>Adding custom RAG (Retrieval-Augmented Generation) for codebase-specific AI queries.</p>
-                            </div>
-                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
-                                <h4 style="color: var(--text-primary);">Result</h4>
-                                <p style="color: var(--accent-primary); font-weight: 600;">Successfully integrated AI API endpoints for rapid, seamless prompt execution.</p>
-                            </div>
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">API Integration</span>
-                            <span class="tech-tag">JavaScript</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://akdev-project.vercel.app/" target="_blank" class="btn btn-primary">View Live</a>
-                            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline">Source Code</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card fade-in-up">
-                    <div class="project-media-wrapper" style="background: #000; display:flex; align-items:center; justify-content:center; color: white;">
-                        <svg viewBox="0 0 24 24" width="80" height="80" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Interactive Resume Maker</h3>
-                        
-                        <div class="psr-framework">
-                            <div class="psr-item">
-                                <h4>Problem</h4>
-                                <p>Building ATS-friendly, visually striking resumes usually requires paying for premium builders or battling with Word formatting.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>Solution</h4>
-                                <p>Built a split-screen web application that allows live editing and instant PDF generation of a modern, Notion-style resume.</p>
-                            </div>
-                            <div class="psr-item">
-                                <h4>How it works</h4>
-                                <p>Leverages Vanilla JavaScript for real-time DOM synchronization and html2pdf.js for flawless client-side PDF rendering without a backend.</p>
-                            </div>
-                            <div class="psr-item" style="border-left-color: var(--accent-primary);">
-                                <h4 style="color: var(--text-primary);">Result</h4>
-                                <p style="color: var(--accent-primary); font-weight: 600;">100% free, highly optimized developer resumes generated in seconds.</p>
-                            </div>
-                        </div>
-
-                        <div class="project-tech">
-                            <span class="tech-tag">HTML/CSS</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">html2pdf.js</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="portfolio/resume-maker/index.html" class="btn btn-primary">Launch Tool</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
@@ -658,17 +1476,22 @@
     <section id="about">
         <div class="container about-container">
             <h2 class="section-title fade-in-up">Behind the <span class="highlight">Code</span></h2>
-            
+
             <div class="about-grid fade-in-up">
                 <div class="about-text">
-                    <p style="font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem; border-left: 4px solid var(--accent-secondary); padding-left: 1rem;">
-                        Hi, I'm AADHAVAN K. I aim to become a full-stack developer focused on solving real-world problems with scalable systems.
+                    <p
+                        style="font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem; border-left: 4px solid var(--accent-secondary); padding-left: 1rem;">
+                        Hi, I'm AADHAVAN K. I aim to become a full-stack developer focused on solving real-world
+                        problems with scalable systems.
                     </p>
-                    <p>As a Computer Science Engineering student, I balance academic coursework (C++, System Design) with building practical tools.</p>
-                    <p>I focus on creating clean, intuitive interfaces backed by solid logic. I look for bottlenecks in daily life and engineer solutions for them without relying on bloated generic frameworks.</p>
+                    <p>As a Computer Science Engineering student, I balance academic coursework (C++, System Design)
+                        with building practical tools.</p>
+                    <p>I focus on creating clean, intuitive interfaces backed by solid logic. I look for bottlenecks in
+                        daily life and engineer solutions for them without relying on bloated generic frameworks.</p>
                 </div>
 
-                <div class="timeline-wrapper" style="background: var(--bg-secondary); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color);">
+                <div class="timeline-wrapper"
+                    style="background: var(--bg-secondary); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color);">
                     <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Learning Timeline</h3>
                     <ul class="timeline">
                         <li><span class="timeline-date">2025</span> Started Web Development</li>
@@ -683,13 +1506,18 @@
     <section class="github-banner fade-in-up">
         <div class="container">
             <svg height="40" viewBox="0 0 16 16" width="40" fill="var(--text-primary)" style="margin-bottom: 1rem;">
-                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                <path fill-rule="evenodd"
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                </path>
             </svg>
             <h2 style="font-size: 1.8rem; margin-bottom: 1rem;">Engineering & Open Source</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                I build clean, scalable systems. Review my code architecture, commits, and problem-solving approach directly on my GitHub.
+            <p
+                style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                I build clean, scalable systems. Review my code architecture, commits, and problem-solving approach
+                directly on my GitHub.
             </p>
-            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline" style="border-color: var(--accent-primary); color: var(--accent-primary);">View GitHub Profile</a>
+            <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="btn btn-outline"
+                style="border-color: var(--accent-primary); color: var(--accent-primary);">View GitHub Profile</a>
         </div>
     </section>
 
@@ -707,27 +1535,32 @@
         <div class="container">
             <h2 class="section-title fade-in-up">Get in Touch</h2>
             <div class="contact-grid">
-                
+
                 <div class="contact-info fade-in-up">
                     <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem;">
                         Found a bug? Have an idea for a tool? Or hiring for an internship? Let me know below.
                     </p>
                     <div style="margin-bottom: 2rem;">
-                        <div style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Direct Email</div>
-                        <a href="mailto:akdev.projects.official@gmail.com" class="contact-info-value mono">akdev.projects.official@gmail.com</a>
+                        <div
+                            style="font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">
+                            Direct Contact</div>
+                        <a href="https://aadhavan-k.vercel.app/#contact" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-envelope"></i> Contact Me
+                        </a>
                     </div>
                 </div>
 
                 <div class="contact-form-wrapper fade-in-up" style="transition-delay: 0.2s;">
-                    
+
                     <div id="formStatus"></div>
 
                     <form id="contactForm" class="contact-form">
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                             <input type="text" name="user_name" class="form-control" placeholder="Your Name" required>
-                            <input type="email" name="user_email" class="form-control" placeholder="Your Email" required>
+                            <input type="email" name="user_email" class="form-control" placeholder="Your Email"
+                                required>
                         </div>
-                        
+
                         <select name="issue_type" class="form-control" style="cursor: pointer;" required>
                             <option value="" disabled selected>What's on your mind?</option>
                             <option value="Internship/Job">Internship / Job Opportunity</option>
@@ -737,8 +1570,10 @@
                             <option value="Other">Other</option>
                         </select>
 
-                        <textarea name="message" class="form-control" style="min-height: 120px; resize: vertical;" placeholder="Describe the issue, feature, or message..." required></textarea>
-                        <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send Message</button>
+                        <textarea name="message" class="form-control" style="min-height: 120px; resize: vertical;"
+                            placeholder="Describe the issue, feature, or message..." required></textarea>
+                        <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Send
+                            Message</button>
                     </form>
                 </div>
 
@@ -746,10 +1581,66 @@
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border-color); background: var(--bg-primary);">
-        <p class="mono" style="color: var(--text-secondary); margin-bottom: 0.5rem;">© 2026 AKDEV LABS.</p>
-        <p class="mono" style="color: var(--accent-primary); opacity: 0.8; font-size: 0.8rem;">Last updated: April 2026</p>
+    <footer
+        style="text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--border-color); background: var(--bg-primary);">
+        <p class="mono"
+            style="color: var(--text-secondary); font-size: 1rem; letter-spacing: 2px; margin-bottom: 2rem;">© 2026
+            AKNEX LABS.</p>
+        <div style="display: flex; justify-content: center; gap: 2.5rem; align-items: center;">
+            <a href="https://aknex-official.vercel.app/" target="_blank"
+                style="color: var(--text-secondary); transition: var(--transition); display: flex; flex-direction: column; align-items: center; gap: 0.5rem;"
+                onmouseover="this.style.color='var(--accent-primary)'"
+                onmouseout="this.style.color='var(--text-secondary)'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+                <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Main Site</span>
+            </a>
+            <a href="https://www.linkedin.com/in/aadhavan-k-829259381/" target="_blank"
+                style="color: var(--text-secondary); transition: var(--transition); display: flex; flex-direction: column; align-items: center; gap: 0.5rem;"
+                onmouseover="this.style.color='#0077b5'" onmouseout="this.style.color='var(--text-secondary)'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+                <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">LinkedIn</span>
+            </a>
+            <a href="https://github.com/adhavanmasscoc-maker" target="_blank"
+                style="color: var(--text-secondary); transition: var(--transition); display: flex; flex-direction: column; align-items: center; gap: 0.5rem;"
+                onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-secondary)'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+                <span style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">GitHub</span>
+            </a>
+        </div>
     </footer>
+
+    <div class="floating-socials">
+        <a href="https://aknex-official.vercel.app/" target="_blank" class="social-link neon-github" title="Main Site"
+            style="border-color: var(--accent-primary); color: var(--accent-primary);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+            </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/aadhavan-k-829259381/" target="_blank" class="social-link neon-linkedin"
+            title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg>
+        </a>
+        <a href="https://github.com/adhavanmasscoc-maker" target="_blank" class="social-link neon-github"
+            title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+            </svg>
+        </a>
+    </div>
 
     <button id="scrollTopBtn" class="btn btn-primary">↑</button>
 
@@ -761,7 +1652,7 @@
             navLinks.classList.toggle('active');
         });
         navLinks.addEventListener('click', () => {
-            if(window.innerWidth <= 768) { navLinks.classList.remove('active'); }
+            if (window.innerWidth <= 768) { navLinks.classList.remove('active'); }
         });
 
         // 1. Advanced Loading Screen Logic with %
@@ -769,7 +1660,7 @@
             let perc = 0;
             const percentEl = document.getElementById('loading-percent');
             const loader = document.getElementById('loader');
-            
+
             const interval = setInterval(() => {
                 perc += Math.floor(Math.random() * 25) + 10;
                 if (perc >= 100) {
@@ -799,21 +1690,60 @@
 
         // 3. Scroll-to-Top Button
         const btn = document.getElementById("scrollTopBtn");
-        window.onscroll = function() {
+        window.onscroll = function () {
             btn.style.display = window.scrollY > 300 ? "block" : "none";
         };
-        btn.onclick = function() {
+        btn.onclick = function () {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
-        // 4. Intersection Observer for Scroll Animations
+        // 4. Project Section Logic (Filtering, Toggles)
         document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const grid = document.getElementById('projects-grid');
+            const cards = document.querySelectorAll('.project-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const toggles = document.querySelectorAll('.details-toggle');
+
+            // --- Collapsible Details ---
+            toggles.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const content = btn.nextElementSibling;
+                    content.classList.toggle('active');
+                    btn.innerHTML = content.classList.contains('active') ?
+                        'Hide Engineering Details ▴' : 'View Engineering Details ▾';
+                });
+            });
+
+            // --- Filtering Logic ---
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const filter = btn.getAttribute('data-filter');
+
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    // Filter cards
+                    cards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'flex';
+                            setTimeout(() => { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => { card.style.display = 'none'; }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); 
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
@@ -844,95 +1774,96 @@
         }
         setTimeout(typeEffect, 1000);
 
-       // 6. Secure SheetDB Form Submission (Replaces EmailJS)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const statusEl = document.getElementById('formStatus');
-    const submitBtn = this.querySelector('button[type="submit"]');
-    
-    // Grab values from your form
-    const nameInput = this.querySelector('input[name="user_name"]').value.trim();
-    const emailInput = this.querySelector('input[name="user_email"]').value.trim();
-    const typeInput = this.querySelector('select[name="issue_type"]').value || "Contact";
-    const msgInput = this.querySelector('textarea[name="message"]').value.trim();
+        // 6. Secure SheetDB Form Submission (Replaces EmailJS)
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
 
-    // Form Validation (Length check)
-    if(msgInput.length < 15) {
-        statusEl.style.color = "var(--red)";
-        statusEl.innerText = "⚠️ Message is too short. Please provide more context.";
-        return;
-    }
+            const statusEl = document.getElementById('formStatus');
+            const submitBtn = this.querySelector('button[type="submit"]');
 
-    // Simple Rate Limiting (Prevent spamming)
-    const lastSent = localStorage.getItem('akdev_email_sent');
-    const nowMs = Date.now();
-    if (lastSent && (nowMs - lastSent < 60000)) { // 1 minute cooldown
-        statusEl.style.color = "var(--red)";
-        statusEl.innerText = "⏳ Please wait a minute before sending another message.";
-        return;
-    }
+            // Grab values from your form
+            const nameInput = this.querySelector('input[name="user_name"]').value.trim();
+            const emailInput = this.querySelector('input[name="user_email"]').value.trim();
+            const typeInput = this.querySelector('select[name="issue_type"]').value || "Contact";
+            const msgInput = this.querySelector('textarea[name="message"]').value.trim();
 
-    // Processing UI
-    const originalText = submitBtn.innerText;
-    submitBtn.innerText = "Sending...";
-    submitBtn.disabled = true;
-    statusEl.style.color = "var(--text-primary)";
-    statusEl.innerText = "Processing your request...";
+            // Form Validation (Length check)
+            if (msgInput.length < 15) {
+                statusEl.style.color = "var(--red)";
+                statusEl.innerText = "⚠️ Message is too short. Please provide more context.";
+                return;
+            }
 
-    // Create perfectly clean timestamp (YYYY-MM-DD HH:MM:SS)
-    const now = new Date();
-    const cleanTimestamp = 
-        now.getFullYear() + '-' + 
-        String(now.getMonth() + 1).padStart(2, '0') + '-' + 
-        String(now.getDate()).padStart(2, '0') + ' ' + 
-        String(now.getHours()).padStart(2, '0') + ':' + 
-        String(now.getMinutes()).padStart(2, '0') + ':' + 
-        String(now.getSeconds()).padStart(2, '0');
+            // Simple Rate Limiting (Prevent spamming)
+            const lastSent = localStorage.getItem('aknex_email_sent');
+            const nowMs = Date.now();
+            if (lastSent && (nowMs - lastSent < 60000)) { // 1 minute cooldown
+                statusEl.style.color = "var(--red)";
+                statusEl.innerText = "⏳ Please wait a minute before sending another message.";
+                return;
+            }
 
-    // ⚠️ Prepare SheetBest Payload (Directly mapping headers)
-    // Removed the "data" wrapper used by SheetDB
-    const sheetBestPayload = {
-        ID: "pt_" + Date.now(), // 'pt_' prefix for Portfolio
-        SiteName: "AKDEV Portfolio",
-        Type: typeInput,
-        Name: nameInput || "Anonymous",
-        Email: emailInput || "N/A",
-        Rating: "N/A", 
-        Message: msgInput,
-        Timestamp: cleanTimestamp,
-        Status: "Pending"
-    };
+            // Processing UI
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+            statusEl.style.color = "var(--text-primary)";
+            statusEl.innerText = "Processing your request...";
 
-    // Send via SheetBest
-    fetch('https://api.sheetbest.com/sheets/7545ab4f-83a2-4105-9cdf-6d94ffe4ef27', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(sheetBestPayload) // ⚠️ Sending the direct object
-    })
-    .then((response) => {
-        if (!response.ok) throw new Error('SheetBest response not ok');
-        return response.json();
-    })
-    .then((data) => {
-        statusEl.style.color = "var(--green)";
-        statusEl.innerText = "Message sent successfully 🚀 I will reply soon.";
-        localStorage.setItem('akdev_email_sent', Date.now()); // Set rate limit timer
-        this.reset();
-        submitBtn.innerText = originalText;
-        submitBtn.disabled = false;
-    })
-    .catch((error) => {
-        statusEl.style.color = "var(--red)";
-        statusEl.innerText = "Failed to send message ❌ Please try emailing directly.";
-        console.error('SheetBest Error:', error);
-        submitBtn.innerText = originalText;
-        submitBtn.disabled = false;
-    });
-});
+            // Create perfectly clean timestamp (YYYY-MM-DD HH:MM:SS)
+            const now = new Date();
+            const cleanTimestamp =
+                now.getFullYear() + '-' +
+                String(now.getMonth() + 1).padStart(2, '0') + '-' +
+                String(now.getDate()).padStart(2, '0') + ' ' +
+                String(now.getHours()).padStart(2, '0') + ':' +
+                String(now.getMinutes()).padStart(2, '0') + ':' +
+                String(now.getSeconds()).padStart(2, '0');
+
+            // ⚠️ Prepare SheetBest Payload (Directly mapping headers)
+            // Removed the "data" wrapper used by SheetDB
+            const sheetBestPayload = {
+                ID: "pt_" + Date.now(), // 'pt_' prefix for Portfolio
+                SiteName: "AKNEX Portfolio",
+                Type: typeInput,
+                Name: nameInput || "Anonymous",
+                Email: emailInput || "N/A",
+                Rating: "N/A",
+                Message: msgInput,
+                Timestamp: cleanTimestamp,
+                Status: "Pending"
+            };
+
+            // Send via SheetDB
+            fetch('https://sheetdb.io/api/v1/z0v3vq8qr5vvm', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: [sheetBestPayload] })
+            })
+                .then((response) => {
+                    if (!response.ok) throw new Error('SheetBest response not ok');
+                    return response.json();
+                })
+                .then((data) => {
+                    statusEl.style.color = "var(--green)";
+                    statusEl.innerText = "Message sent successfully 🚀 I will reply soon.";
+                    localStorage.setItem('aknex_email_sent', Date.now()); // Set rate limit timer
+                    this.reset();
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                })
+                .catch((error) => {
+                    statusEl.style.color = "var(--red)";
+                    statusEl.innerText = "Failed to send message ❌ Please try emailing directly.";
+                    console.error('SheetBest Error:', error);
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
     </script>
 </body>
+
 </html>
